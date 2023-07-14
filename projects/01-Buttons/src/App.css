@@ -1,0 +1,29 @@
+button{
+  padding: 1.5vh 2vh;
+  border-radius: 6px;
+  min-width: 12vh;
+  font-weight: bolder;
+}
+
+.my-button-default{
+  background-color: #e0e0e0;
+  border: none;
+}
+
+button:hover, button:focus{
+  filter: brightness(75%);
+  transition: 0.5s;
+}
+
+.my-button-outline{
+  background-color: white;
+  border-color: #3d5afe;
+  color: #3d5afe;
+}
+
+.my-button-text{
+  background-color: white;
+  color: #3d5afe;
+  border: none;
+}
+
