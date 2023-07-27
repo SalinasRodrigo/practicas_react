@@ -1,9 +1,10 @@
-import './App.css'
-import { useState } from 'react'
+import "./App.css";
+import { useState } from "react";
 
-export function Square ({value, onSquareClick}) {
+export function Square({ value, onSquareClick }) {
   return (
-    <button className="square" onClick={onSquareClick}>{value}</button>
-  )
-        
+    <button className="square" onClick={onSquareClick}>
+      {value}
+    </button>
+  );
 }
