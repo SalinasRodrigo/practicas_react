@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { getRamdonFact } from "./services/facts";
 
 //const CAT_IMAGE_API = `https://cataas.com/cat/says/`
 //hello?&json=true
-const CAT_RANDOM_FACT_END_POINT = `https://catfact.ninja/fact`;
 const URL_PREFIC = "https://cataas.com/";
 
-function App() {
-  const [fact, setFact] = useState("");
+function useCatImage({ fact }) {
   const [url, setUrl] = useState();
 
   useEffect(() => {
-    fetch(CAT_RANDOM_FACT_END_POINT)
-      .then((response) => response.json())
-      .then((data) => {
-        const { fact } = data;
-        setFact(fact);
-      });
-  }, []);
-
-  useEffect(() => {
+    if (!fact) return;
     const palabras = fact.split(" ", 3).join(" ");
     fetch(`https://cataas.com/cat/says/${palabras}?&json=true`)
       .then((res) => res.json())
@@ -29,10 +20,27 @@ function App() {
       });
   }, [fact]);
 
+  return { url };
+}
+
+function App() {
+  const [fact, setFact] = useState();
+  const { url } = useCatImage({ fact });
+
+  useEffect(() => {
+    getRamdonFact().then(setFact);
+  }, []);
+
+  const handleClick = async () => {
+    const newFact = await getRamdonFact();
+    setFact(newFact);
+  };
+
   return (
     <main>
+      <button onClick={handleClick}>Get New fact</button>
       {fact && <p>{fact}</p>}
-      <img src={`${URL_PREFIC}${url}`} alt={`cat image ${fact}`} />
+      <img src={`${URL_PREFIC}${url}`} alt={`cat image from "${fact}"`} />
     </main>
   );
 }
