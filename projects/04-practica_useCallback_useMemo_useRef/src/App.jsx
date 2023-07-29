@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import "./App.css";
-import { getMovie } from "./services/getMovie";
+//import { getMovie } from "./services/getMovie";
 import { Movies } from "./components/Movies";
-
+import { useMovies } from "./hooks/useMovies";
 //const MOVIE_API_END_POINT= `https://www.omdbapi.com/?apikey=cb7a74b0&s=Pokemon&page=2`
 
-function App() {
-  const [movieSearch, setMovieSearch] = useState([]);
-  const impt = "Pokemon";
-  useEffect(() => {
-    //if (!movie) return
-    getMovie(impt).then((newSearch) => {
-      console.log(newSearch);
-      setMovieSearch(newSearch);
-    });
-    console.log("holas");
-  }, []);
 
+
+function App() {
+
+  const {movieSearch} = useMovies()
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
