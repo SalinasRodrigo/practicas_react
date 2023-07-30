@@ -7,30 +7,34 @@ import { useMovies } from "./hooks/useMovies";
 
 
 function App() {
-  const {movieSearch} = useMovies()
-  const [query, setQuery] = useState('')
+  const [inpt, setInpt] = useState('')
+  const {movieSearch} = useMovies({inpt})
   
 
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(query)
+    console.log(inpt)
 
   };
 
   const handleChange = (event) =>{
-    setQuery(event.target.value)
+    setInpt(event.target.value)
   }
 
   return (
-    <main>
-      <h1>Busqueda de Peliculas</h1>
-      <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} value={query}  type="text" name="movieTitle" />
-        <input type="submit" />
-      </form>
-      <Movies movies={movieSearch} />
-    </main>
+    <div className='page'>
+      <header>
+        <h1>Busqueda de Peliculas</h1>
+        <form onSubmit={handleSubmit}>
+          <input onChange={handleChange} value={inpt}  type="text" name="movieTitle" />
+          <input type="submit" />
+        </form>
+      </header>
+      <main>
+        <Movies movies={movieSearch} />
+      </main>
+    </div>
   );
 }
 

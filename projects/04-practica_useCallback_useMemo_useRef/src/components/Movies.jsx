@@ -2,9 +2,9 @@
 
 const ListOfMovies = ({ movieSearch }) => {
   return (
-    <ul>
+    <ul className="movies">
       {movieSearch.map((movie) => (
-        <div key={movie.id}>
+        <div className="movie" key={movie.id}>
           <h2>{movie.title}</h2>
           <img src={movie.poster} alt={`Poster of tehe movie ${movie.title}`} />
           <p>Release year: {movie.year}</p>
