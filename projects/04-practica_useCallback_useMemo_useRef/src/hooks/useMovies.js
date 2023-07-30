@@ -7,8 +7,6 @@ export const useMovies = () => {
   useEffect(() => {
     //if (!movie) return
     getMovie(impt).then((newSearch) => {
-      console.log(newSearch);
-
       const mappedSearch = newSearch?.map(newSearch=> ({
         id: newSearch.imdbID,
         title: newSearch.Title,
@@ -18,7 +16,6 @@ export const useMovies = () => {
 
       setMovieSearch(mappedSearch);
     });
-    console.log("holas");
   }, []);
 
   return {movieSearch}

@@ -4,7 +4,6 @@ export const getMovie = async (impt) => {
   const res = await fetch(`${MOVIE_API_END_POINT}s=${impt}`)
   const data = await res.json()
   const {Search} = data
-  console.log(Search)
   return Search
 }
 
