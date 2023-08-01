@@ -43,3 +43,7 @@ form {
   border-radius: 8px;
   margin-top: 16px;
 }
+
+.error{
+  color: red;
+}
