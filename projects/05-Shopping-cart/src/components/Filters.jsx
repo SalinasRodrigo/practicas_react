@@ -1,47 +1,51 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
-import './Filters.css'
+import { useContext, useId } from "react";
+import "./Filters.css";
+import { FiltersContext } from "../context/filters";
 
-export function Filters ( {changeFilters} ) {
-  const [minPrice, setMinPrice] = useState(0)
+export function Filters() {
+  const { filters, setFilters } = useContext(FiltersContext);
 
-  const handleChangeMinPrice = (event) =>{
-    setMinPrice(event.target.value)
-    changeFilters(prevState => ({
+  const minPriceFilterId = useId();
+  const categoryFilterId = useId();
+
+  const handleChangeMinPrice = (event) => {
+    setFilters((prevState) => ({
       ...prevState,
-      minPrice: event.target.value
-    }))
-  }
+      minPrice: event.target.value,
+    }));
+  };
 
-  const handleChangeCategory = (event) =>{
-    changeFilters(prevState => ({
+  const handleChangeCategory = (event) => {
+    setFilters((prevState) => ({
       ...prevState,
-      category: event.target.value
-    }))
-  }
+      category: event.target.value,
+    }));
+  };
 
-  return(
-    <div className='filters'>
+  return (
+    <div className="filters">
       <div>
-        <label htmlFor="price">Price minimo</label>
+        <label htmlFor={minPriceFilterId}>Price minimo</label>
         <input
-        onChange={handleChangeMinPrice} 
-        type="range"
-        id="price" 
-        min={0}
-        max={1000}
+          onChange={handleChangeMinPrice}
+          type="range"
+          id={minPriceFilterId}
+          min={0}
+          max={1000}
+          value={filters.minPrice}
         />
-        <span>${minPrice}</span>
+        <span>${filters.minPrice}</span>
       </div>
 
       <div>
-        <label htmlFor="category">Categorías</label>
-        <select id="category" onChange={handleChangeCategory} >
+        <label htmlFor={categoryFilterId}>Categorías</label>
+        <select id={categoryFilterId} onChange={handleChangeCategory}>
           <option value="all">Todas</option>
           <option value="laptops">Laptops</option>
           <option value="smartphones">Smartphones</option>
         </select>
       </div>
     </div>
-  )
+  );
 }
