@@ -41,7 +41,7 @@ export function Cart() {
             />
           ))}
         </ul>
-        <button onClick={clearCart}>
+        <button onClick={() => clearCart()}>
           <ClearCartIcon />
         </button>
       </aside>
