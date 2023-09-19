@@ -10,7 +10,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const newTeam = { name: event.target.equipo.value, pts: 0, pj: 0, tf: 0, tc: 0, ff: 0};
+    const newTeam = { name: event.target.equipo.value, pts: 0, pj: 0, tf: 0, tc: 0, ff: 0, victories:[]};
     const newTeams = [...teams,newTeam ]
     setTeams(newTeams)
   }
@@ -27,7 +27,7 @@ function App() {
       </form>
     </div>
     <TablaEquipos teams={teams}/>
-    <MatchesTable teams={teams}/>
+    <MatchesTable teams={teams} setTeams={setTeams} />
     <Clasificacion teams={teams}/>
     </>
   )
