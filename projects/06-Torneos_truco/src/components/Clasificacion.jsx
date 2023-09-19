@@ -1,6 +1,21 @@
 /* eslint-disable react/prop-types */
 
+import { useEffect, useState } from "react"
+
 export function Clasificacion ( {teams}) {
+  const [sortedTeams, setSortedTeams] = useState([])
+  useEffect(()=>{
+    const sortTeams = [...teams].sort((a,b) => {
+      if((a.pts == b.pts) && (a.ff == b.ff)){
+        return (a.tf - a.tc) > (b.tf - b.tc) ? -1 : 1
+      }
+      if(a.pts == b.pts){
+        return a.ff > b.ff ? -1 : 1
+      }
+      return a.pts > b.pts ? -1 : 1
+    })
+    setSortedTeams(sortTeams)
+  },[teams])
   return(
     <div> {/*envolver en un componentes*/}
       <table>
@@ -21,7 +36,7 @@ export function Clasificacion ( {teams}) {
           </tr>
         </thead>
         <tbody>
-          {teams.map((team, index)=> {
+          {sortedTeams.map((team, index)=> {
             return(
               <tr key={index}>
                 <td>0</td>

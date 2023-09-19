@@ -7,7 +7,8 @@
 - [x] Tabla de partidos.
 - [x] Tablas de clasificaión.
 - [x] Modularizar tablas.
-- [ ] Calculos de clasificación.
+- [x] Calculo de puntos por partido.
+- [x] Calculos de clasificación.
 - [ ] Guarda en un localStorage lo equipos para que se recupere al recargar la página.
 - [ ] Bonton de editar.
 - [ ] Boton de reiniciar.
