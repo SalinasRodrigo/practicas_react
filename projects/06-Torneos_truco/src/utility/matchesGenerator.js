@@ -13,12 +13,14 @@ export const matchesGenerator = (numberTeams) => {
     matches.push([])
 
     for (let m = 0; m < mpr; m++) {
-      // console.log("m:",m,"el otro:",t.length-1-m)
-      // console.log([t[m],t[t.length-1-m]])
+      if(t[t.length-1-m]==numberTeams || t[m]==numberTeams){
+        continue
+      }
       matches[r].push([t[m],t[t.length-1-m]])
     }
     
     t.splice(1,0, t.pop())
   }
+
   return matches
 }

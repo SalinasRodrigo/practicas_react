@@ -8,8 +8,15 @@ export function MatchesTable ({teams, setTeams}) {
 
   const [matches, setMatches] = useState(null)
   
-  const handleClick = () => {
+  const handleClick = (event) => {
+    if (teams.length>0){
+      event.target.style.display = 'none';
+    }
+    else{
+      return
+    }
     const aux = matchesGenerator(teams.length)
+    console.log(aux)
     setMatches(aux)
   }
 
@@ -52,12 +59,9 @@ export function MatchesTable ({teams, setTeams}) {
       newState[loserId].pj -= 1;
     }
     newState.forEach((team, index) => {
-      console.log(team, index)
-      console.log(team.victories)
       let auxFf = 0
       if(team.victories.length>0){
         for (let i = 0; i < team.victories.length; i++) {
-          console.log(newState[team.victories[i]].pts)
           auxFf += newState[team.victories[i]].pts
         }
         newState[index].ff = auxFf

@@ -17,7 +17,7 @@ export function Clasificacion ( {teams}) {
     setSortedTeams(sortTeams)
   },[teams])
   return(
-    <div> {/*envolver en un componentes*/}
+    <div> 
       <table>
         <thead>
           <tr>
