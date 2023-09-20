@@ -1,24 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react"
-import { matchesGenerator } from "../utility/matchesGenerator"
-
-
-export function MatchesTable ({teams, setTeams}) {
-
-  const [matches, setMatches] = useState(null)
-  
-  const handleClick = (event) => {
-    if (teams.length>0){
-      event.target.style.display = 'none';
-    }
-    else{
-      return
-    }
-    const aux = matchesGenerator(teams.length)
-    console.log(aux)
-    setMatches(aux)
-  }
+export function MatchesTable ({teams, setTeams,matches}) {
 
   const handleMatchClick = (event) => {
     const evento = event.target
@@ -27,11 +9,14 @@ export function MatchesTable ({teams, setTeams}) {
     const fechaId = evento.id[6]
     const team1Input = document.getElementById(match[0]+","+matchId+","+fechaId)
     const team2Input = document.getElementById(match[1]+","+matchId+","+fechaId)
-    const winerScore = team1Input.value > team2Input.value ? team1Input.value : team2Input.value
-    const loserScore = team1Input.value < team2Input.value ? team1Input.value : team2Input.value
-    const winerId = team1Input.value > team2Input.value ? match[0] : match[1]
-    const loserId = team1Input.value < team2Input.value ? match[0] : match[1]
+    const winerScore = parseInt(team1Input.value) > parseInt(team2Input.value) ? team1Input.value : team2Input.value
+    const loserScore = parseInt(team1Input.value) < parseInt(team2Input.value) ? team1Input.value : team2Input.value
+    const winerId = parseInt(team1Input.value) > parseInt(team2Input.value) ? match[0] : match[1]
+    const loserId = parseInt(team1Input.value) < parseInt(team2Input.value) ? match[0] : match[1]
     const newState = structuredClone(teams);
+    if(winerScore == ""  || loserScore == "" || winerScore == loserScore){
+      return
+    }
     if (evento.textContent == "O" ){//Aceptar
       evento.textContent = "X"
       team1Input.setAttribute("disabled", "")
@@ -131,7 +116,6 @@ export function MatchesTable ({teams, setTeams}) {
           }
         </tbody>
       </table>
-      <button onClick={handleClick}>Empezar</button>
     </div>
   )
 }
