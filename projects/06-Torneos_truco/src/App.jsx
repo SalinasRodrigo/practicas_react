@@ -31,7 +31,10 @@ function App() {
     setTeams(newTeams)
   }
 
-  
+  const reset = () => {
+    setTeams([])
+    setMatches(null)
+  }
 
   return (
     <>
@@ -42,10 +45,11 @@ function App() {
         <input type="submit" value="+"/>
       </form>
     </div>
-    <button onClick={handleClick}>Empezar</button>
-    {teams.length>0 ? <TablaEquipos teams={teams}/>: <div></div>}
-    {matches ? <MatchesTable teams={teams} setTeams={setTeams} matches={matches} /> : <div></div>}
-    {teams.length>0 ? <Clasificacion teams={teams}/> : <div></div>}
+    {!matches && teams.length > 1 ? <button onClick={handleClick}>Empezar</button> : <></>}
+    {teams.length > 0 ? <button onClick={reset}>Reiniciar</button> : <></>}
+    {teams.length > 0 ? <TablaEquipos teams={teams}/>: <></>}
+    {matches ? <MatchesTable teams={teams} setTeams={setTeams} matches={matches} /> : <></>}
+    {teams.length > 0 ? <Clasificacion teams={teams}/> : <></>}
     </>
   )
 }
