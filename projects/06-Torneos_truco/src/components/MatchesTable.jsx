@@ -3,15 +3,15 @@
 export function MatchesTable ({teams, setTeams,matches}) {
 
   const handleMatchClick = (event) => {
-    if(team1Input.value == ""  || team2Input.value == "" || team1Input.value == team2Input.value){
-      return
-    }
     const evento = event.target
     const match = [evento.id[0], evento.id[2]]
     const matchId = evento.id[4]
     const fechaId = evento.id[6]
     const team1Input = document.getElementById(match[0]+","+matchId+","+fechaId)
     const team2Input = document.getElementById(match[1]+","+matchId+","+fechaId)
+    if(team1Input.value == ""  || team2Input.value == "" || team1Input.value == team2Input.value){
+      return
+    }
     const team1Score = parseInt(team1Input.value);
     const team2Score = parseInt(team2Input.value);
     const winerScore = team1Score > team2Score ? team1Score : team2Score
