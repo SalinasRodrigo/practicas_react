@@ -12,6 +12,7 @@
 - [ ] Guarda en un localStorage lo equipos para que se recupere al recargar la página.
 - [ ] Bonton de editar.
 - [x] Boton de reiniciar.
-- [ ] Agregar validaciones.
-- [ ] Estilos basicos.
+- [x] Agregar validaciones.
+- [ ] Agregar mensajes de validación.
+- [x] Estilos basicos.
 
