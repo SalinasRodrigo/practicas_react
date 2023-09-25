@@ -70,7 +70,6 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
       newState[loserId].pj += 1;
       newMatches[fechaId][matchId][2]=team1Score
       newMatches[fechaId][matchId][3]=team2Score
-      console.log(newMatches[fechaId][matchId])
       setMatches(newMatches)
     } else {
       //edición
@@ -89,7 +88,6 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
       newState[loserId].pj -= 1;
       newMatches[fechaId][matchId][2]= 0
       newMatches[fechaId][matchId][3]= 0
-      console.log(newMatches[fechaId][matchId])
       setMatches(newMatches)
     }
     newState.forEach((team, index) => {

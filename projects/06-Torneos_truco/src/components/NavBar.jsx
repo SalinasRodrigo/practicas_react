@@ -6,6 +6,7 @@ export function NavBar ( {teams, setTeams, setMatches, matches}) {
     setTeams([]);
     setMatches(null);
     window.localStorage.setItem('teams', JSON.stringify([]))
+    window.localStorage.setItem('matches', JSON.stringify(null))
   };
 
   const handleClick = () => {

@@ -39,7 +39,7 @@ export function Clasificacion({ teams }) {
               {sortedTeams.map((team, index) => {
                 return (
                   <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td>{index + 1}º</td>
                     <td>{team.name}</td>
                     <td>{team.pts}</td>
                     <td>{team.pj}</td>
