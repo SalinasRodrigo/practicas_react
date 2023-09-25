@@ -8,6 +8,7 @@
 
 main{
   height: 91vh;
+  background-color: #FFFFFF;
 }
 
 label{
@@ -22,6 +23,7 @@ label{
   justify-content: end;
   align-items: center;
   padding: 0 50px;
+  border-bottom: 2px solid black
 }
 
 .nav-buttons{

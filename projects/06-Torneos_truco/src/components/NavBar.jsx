@@ -5,11 +5,13 @@ export function NavBar ( {teams, setTeams, setMatches, matches}) {
   const reset = () => {
     setTeams([]);
     setMatches(null);
+    window.localStorage.setItem('teams', JSON.stringify([]))
   };
 
   const handleClick = () => {
     const aux = matchesGenerator(teams.length);
     setMatches(aux);
+    window.localStorage.setItem('matches', JSON.stringify(aux))
   };
 
   return (

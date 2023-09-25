@@ -21,6 +21,7 @@ export function TeamTable({ teams, setTeams }) {
     const newTeams = [...teams, newTeam];
     setTeams(newTeams);
     event.target.equipo.value = ""
+    window.localStorage.setItem('teams', JSON.stringify(newTeams))
   };
 
   return (

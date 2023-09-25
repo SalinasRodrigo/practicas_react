@@ -1,6 +1,33 @@
 /* eslint-disable react/prop-types */
 
-export function MatchesTable({ teams, setTeams, matches }) {
+import { useEffect } from "react";
+
+export function MatchesTable({ teams, setTeams, matches, setMatches }) {
+
+  useEffect(()=>{
+    if(matches){
+      matches.forEach((fecha, index)=>{
+        const fechaIndex = index
+        fecha.forEach((match, index)=>{
+          const inputTeam1 = document.getElementById(match[0] + "," + index + "," + fechaIndex)
+          const inputTeam2 = document.getElementById(match[1] + "," + index + "," + fechaIndex)
+          const buttonMatch = document.getElementById(match[0] + "," + match[1] + "," + index + "," + fechaIndex)
+          if(match.length>2 && match[2] != 0 && match[3] != 0){
+            inputTeam1.value = match[2]
+            inputTeam2.value = match[3]
+            inputTeam1.setAttribute("disabled", "");
+            inputTeam2.setAttribute("disabled", "");
+            buttonMatch.textContent = "X"
+          }else{
+            inputTeam1.value = ""
+            inputTeam2.value = ""
+          }
+        })
+      })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const handleMatchClick = (event) => {
     const evento = event.target;
     const match = [evento.id[0], evento.id[2]];
@@ -26,6 +53,7 @@ export function MatchesTable({ teams, setTeams, matches }) {
     const winerId = team1Score > team2Score ? match[0] : match[1];
     const loserId = team1Score < team2Score ? match[0] : match[1];
     const newState = structuredClone(teams);
+    const newMatches = structuredClone(matches);
 
     if (evento.textContent == "O") {
       //Aceptar
@@ -40,6 +68,10 @@ export function MatchesTable({ teams, setTeams, matches }) {
       newState[loserId].tf += loserScore;
       newState[loserId].tc += winerScore;
       newState[loserId].pj += 1;
+      newMatches[fechaId][matchId][2]=team1Score
+      newMatches[fechaId][matchId][3]=team2Score
+      console.log(newMatches[fechaId][matchId])
+      setMatches(newMatches)
     } else {
       //edición
       evento.textContent = "O";
@@ -55,6 +87,10 @@ export function MatchesTable({ teams, setTeams, matches }) {
       newState[loserId].tf -= loserScore;
       newState[loserId].tc -= winerScore;
       newState[loserId].pj -= 1;
+      newMatches[fechaId][matchId][2]= 0
+      newMatches[fechaId][matchId][3]= 0
+      console.log(newMatches[fechaId][matchId])
+      setMatches(newMatches)
     }
     newState.forEach((team, index) => {
       let auxFf = 0;
@@ -66,7 +102,10 @@ export function MatchesTable({ teams, setTeams, matches }) {
       } else newState[index].ff = 0;
     });
     setTeams(newState);
+    window.localStorage.setItem('teams', JSON.stringify(newState));
+    window.localStorage.setItem('matches', JSON.stringify(newMatches));
   };
+
   return (
     <div>
       <div className="table">
@@ -129,7 +168,7 @@ export function MatchesTable({ teams, setTeams, matches }) {
                             <button
                               className="button button-matches"
                               onClick={handleMatchClick}
-                              id={[match, index, fechaIndex]}
+                              id={[match[0], match[1], index, fechaIndex]}
                             >
                               O
                             </button>
