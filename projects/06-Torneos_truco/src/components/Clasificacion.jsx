@@ -18,7 +18,7 @@ export function Clasificacion({ teams }) {
   }, [teams]);
   return (
     <div>
-      <div className="table">
+      <div className="table clasificacion">
         {teams.length > 0 ? (
           <table>
             <thead>
@@ -27,12 +27,12 @@ export function Clasificacion({ teams }) {
               </tr>
               <tr>
                 <th>Posición</th>
-                <th>Equiupo</th>
-                <th>Puntos</th>
-                <th>Partidos jugados</th>
-                <th>Tantos a favor</th>
-                <th>Tantos en contra</th>
-                <th>Factor Fuerza</th>
+                <th>Equipo</th>
+                <th>Pts</th>
+                <th>Pj</th>
+                <th>Tf</th>
+                <th>Tc</th>
+                <th>ff</th>
               </tr>
             </thead>
             <tbody>
@@ -59,12 +59,12 @@ export function Clasificacion({ teams }) {
               </tr>
               <tr>
                 <th>Posición</th>
-                <th>Equiupo</th>
-                <th>Puntos</th>
-                <th>Partidos jugados</th>
-                <th>Tantos a favor</th>
-                <th>Tantos en contra</th>
-                <th>Factor Fuerza</th>
+                <th>Equipo</th>
+                <th>Pts</th>
+                <th>Pj</th>
+                <th>Tf</th>
+                <th>Tc</th>
+                <th>ff</th>
               </tr>
             </thead>
             <tbody>

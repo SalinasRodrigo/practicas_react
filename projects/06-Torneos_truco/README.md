@@ -13,6 +13,6 @@
 - [x] Boton de reiniciar.
 - [x] Agregar validaciones.
 - [x] Estilos basicos.
-- [ ] Agregar un logo y titulo.
-- [ ] Hacer el deployment.
+- [x] Agregar un logo y titulo.
+- [x] Hacer el deployment.
 

@@ -42,6 +42,8 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
     if (
       team1Input.value == "" ||
       team2Input.value == "" ||
+      team1Input.value > 30 ||
+      team2Input.value > 30 ||
       team1Input.value == team2Input.value
     ) {
       return;
@@ -106,7 +108,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
 
   return (
     <div>
-      <div className="table">
+      <div className="table maches">
         {matches ? (
           <table>
             <thead>
