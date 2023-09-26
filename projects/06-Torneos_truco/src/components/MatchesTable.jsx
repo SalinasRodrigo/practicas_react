@@ -135,7 +135,8 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
                         <tr key={[index, fechaIndex]}>
                           {index % fecha.length == 0 ? (
                             <td rowSpan={fecha.length} style={{
-                              backgroundColor: (fechaIndex%2 == 0) ? "#12710C" : "#199E11"
+                              backgroundColor: (fechaIndex%2 == 0) ? "#12710C" : "#199E11",
+                              color: "white"
                             }}>
                               Fecha {fechaIndex + 1}
                             </td>
