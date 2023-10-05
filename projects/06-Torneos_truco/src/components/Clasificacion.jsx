@@ -7,7 +7,7 @@ export function Clasificacion({ teams }) {
   useEffect(() => {
     const sortTeams = [...teams].sort((a, b) => {
       if (a.pts == b.pts && a.ff == b.ff) {
-        return a.tf - a.tc > b.tf - b.tc ? -1 : 1;
+        return a.tf > b.tf ? -1 : 1;
       }
       if (a.pts == b.pts) {
         return a.ff > b.ff ? -1 : 1;
