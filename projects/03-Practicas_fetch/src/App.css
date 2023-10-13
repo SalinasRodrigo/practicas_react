@@ -5,6 +5,16 @@
   text-align: center;
 }
 
+main{
+  width: 100vh;
+  height: 100vh;
+}
+
+img{
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px 5px black;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

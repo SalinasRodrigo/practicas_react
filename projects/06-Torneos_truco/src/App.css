@@ -28,9 +28,15 @@ label{
 
 .titulo{
   color: #FFFFFF;
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   & h1 {
     font-size: 25px;
+  }
+  & img{
+    height: 6vh;
   }
 }
 
@@ -45,6 +51,7 @@ label{
   padding: 5px;
   box-shadow: -5px 5px black;
   border: 2px solid black;
+  color: black;
 }
 
 .button:hover{

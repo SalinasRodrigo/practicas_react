@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect } from "react";
+import { EditIcon } from "../icons/EditIcon";
+import { CheckIcon } from "../icons/CheckIcon";
 
-export function MatchesTable({ teams, setTeams, matches, setMatches }) {
+export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches, setEndMatches }) {
 
   useEffect(()=>{
     if(matches){
@@ -11,13 +13,11 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
         fecha.forEach((match, index)=>{
           const inputTeam1 = document.getElementById(match[0] + "," + index + "," + fechaIndex)
           const inputTeam2 = document.getElementById(match[1] + "," + index + "," + fechaIndex)
-          const buttonMatch = document.getElementById(match[0] + "," + match[1] + "," + index + "," + fechaIndex)
           if(match.length>2 && match[2] != 0 && match[3] != 0){
             inputTeam1.value = match[2]
             inputTeam2.value = match[3]
             inputTeam1.setAttribute("disabled", "");
             inputTeam2.setAttribute("disabled", "");
-            buttonMatch.textContent = "X"
           }else{
             inputTeam1.value = ""
             inputTeam2.value = ""
@@ -28,11 +28,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleMatchClick = (event) => {
-    const evento = event.target;
-    const match = [evento.id[0], evento.id[2]];
-    const matchId = evento.id[4];
-    const fechaId = evento.id[6];
+  const handleMatchClick = (match, matchId, fechaId, matchEnd) => {
     const team1Input = document.getElementById(
       match[0] + "," + matchId + "," + fechaId
     );
@@ -56,10 +52,10 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
     const loserId = team1Score < team2Score ? match[0] : match[1];
     const newState = structuredClone(teams);
     const newMatches = structuredClone(matches);
-
-    if (evento.textContent == "O") {
+    const newEndMatches = structuredClone(endMatches)
+    if (!matchEnd) {
       //Aceptar
-      evento.textContent = "X";
+      newEndMatches[(fechaId*2) + matchId] = true
       team1Input.setAttribute("disabled", "");
       team2Input.setAttribute("disabled", "");
       newState[winerId].tf += winerScore;
@@ -72,10 +68,9 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
       newState[loserId].pj += 1;
       newMatches[fechaId][matchId][2]=team1Score
       newMatches[fechaId][matchId][3]=team2Score
-      setMatches(newMatches)
     } else {
       //edición
-      evento.textContent = "O";
+      newEndMatches[(fechaId*2) + matchId] = !match
       team1Input.removeAttribute("disabled");
       team2Input.removeAttribute("disabled");
       newState[winerId].tf -= winerScore;
@@ -90,7 +85,6 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
       newState[loserId].pj -= 1;
       newMatches[fechaId][matchId][2]= 0
       newMatches[fechaId][matchId][3]= 0
-      setMatches(newMatches)
     }
     newState.forEach((team, index) => {
       let auxFf = 0;
@@ -101,8 +95,11 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
         newState[index].ff = auxFf;
       } else newState[index].ff = 0;
     });
+    setMatches(newMatches)
+    setEndMatches(newEndMatches)
     setTeams(newState);
     window.localStorage.setItem('teams', JSON.stringify(newState));
+    window.localStorage.setItem('endMatches', JSON.stringify(newEndMatches));
     window.localStorage.setItem('matches', JSON.stringify(newMatches));
   };
 
@@ -168,10 +165,14 @@ export function MatchesTable({ teams, setTeams, matches, setMatches }) {
                           <td>
                             <button
                               className="button button-matches"
-                              onClick={handleMatchClick}
+                              onClick={() => handleMatchClick ([match[0], match[1]], index, fechaIndex, endMatches[(fechaIndex*2) + index])}
                               id={[match[0], match[1], index, fechaIndex]}
                             >
-                              O
+                              {endMatches[(fechaIndex*2) + index] ? 
+                                <EditIcon/>
+                                :
+                                <CheckIcon/>
+                              }
                             </button>
                           </td>
                         </tr>
