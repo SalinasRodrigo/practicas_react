@@ -25,14 +25,14 @@ export function Clasificacion({ teams }) {
               <tr>
                 <th colSpan={7}>Clasificación</th>
               </tr>
-              <tr>
+              <tr >
                 <th>Posición</th>
                 <th>Equipo</th>
-                <th>Pts</th>
-                <th>Pj</th>
-                <th>Tf</th>
-                <th>Tc</th>
-                <th>ff</th>
+                <th translate="no">Pts</th>
+                <th translate="no">Pj</th>
+                <th translate="no">Tf</th>
+                <th translate="no">Tc</th>
+                <th translate="no">Ff</th>
               </tr>
             </thead>
             <tbody>
@@ -60,11 +60,11 @@ export function Clasificacion({ teams }) {
               <tr>
                 <th>Posición</th>
                 <th>Equipo</th>
-                <th>Pts</th>
-                <th>Pj</th>
-                <th>Tf</th>
-                <th>Tc</th>
-                <th>ff</th>
+                <th translate="no">Pts</th>
+                <th translate="no">Pj</th>
+                <th translate="no">Tf</th>
+                <th translate="no">Tc</th>
+                <th translate="no">Ff</th>
               </tr>
             </thead>
             <tbody>
