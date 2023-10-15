@@ -29,8 +29,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
   }, [])
 
   const handleMatchClick = (match, matchId, fechaId) => {
-    const mpr = parseInt((matches.length) / 2)
-    const matchEnd = endMatches[fechaId*mpr + matchId]
+    const matchEnd = endMatches[fechaId*matches[0].length + matchId]
     const team1Input = document.getElementById(
       match[0] + "," + matchId + "," + fechaId
     );
@@ -57,7 +56,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
     const newEndMatches = structuredClone(endMatches)
     if (!matchEnd) {
       //Aceptar
-      newEndMatches[fechaId*mpr + matchId] = true
+      newEndMatches[fechaId*matches[0].length + matchId] = true
       team1Input.setAttribute("disabled", "");
       team2Input.setAttribute("disabled", "");
       newState[winerId].tf += winerScore;
@@ -72,7 +71,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
       newMatches[fechaId][matchId][3]=team2Score
     } else {
       //edición
-      newEndMatches[fechaId*mpr + matchId] = false
+      newEndMatches[fechaId*matches[0].length + matchId] = false
       team1Input.removeAttribute("disabled");
       team2Input.removeAttribute("disabled");
       newState[winerId].tf -= winerScore;
@@ -170,7 +169,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
                               onClick={() => handleMatchClick ([match[0], match[1]], index, fechaIndex)}
                               id={[match[0], match[1], index, fechaIndex]}
                             >
-                              {endMatches[fechaIndex*parseInt((matches.length) / 2) + index] ? 
+                              {endMatches[fechaIndex*matches[0].length + index] ? 
                                 <EditIcon/>
                                 :
                                 <CheckIcon/>
