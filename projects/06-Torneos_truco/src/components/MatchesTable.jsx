@@ -28,7 +28,9 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleMatchClick = (match, matchId, fechaId, matchEnd) => {
+  const handleMatchClick = (match, matchId, fechaId) => {
+    const mpr = parseInt((matches.length) / 2)
+    const matchEnd = endMatches[fechaId*mpr + matchId]
     const team1Input = document.getElementById(
       match[0] + "," + matchId + "," + fechaId
     );
@@ -55,7 +57,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
     const newEndMatches = structuredClone(endMatches)
     if (!matchEnd) {
       //Aceptar
-      newEndMatches[(fechaId*2) + matchId] = true
+      newEndMatches[fechaId*mpr + matchId] = true
       team1Input.setAttribute("disabled", "");
       team2Input.setAttribute("disabled", "");
       newState[winerId].tf += winerScore;
@@ -70,7 +72,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
       newMatches[fechaId][matchId][3]=team2Score
     } else {
       //edición
-      newEndMatches[(fechaId*2) + matchId] = !match
+      newEndMatches[fechaId*mpr + matchId] = false
       team1Input.removeAttribute("disabled");
       team2Input.removeAttribute("disabled");
       newState[winerId].tf -= winerScore;
@@ -145,7 +147,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
                               type="number"
                               name="team1"
                               id={[[match[0]], index, fechaIndex]}
-                              placeholder={0}
+                              placeholder={""}
                               min={0}
                               max={30}
                             />
@@ -156,7 +158,7 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
                               type="number"
                               name="team1"
                               id={[[match[1]], index, fechaIndex]}
-                              placeholder={0}
+                              placeholder={""}
                               min={0}
                               max={30}
                             />
@@ -165,10 +167,10 @@ export function MatchesTable({ teams, setTeams, matches, setMatches, endMatches,
                           <td>
                             <button
                               className="button button-matches"
-                              onClick={() => handleMatchClick ([match[0], match[1]], index, fechaIndex, endMatches[(fechaIndex*2) + index])}
+                              onClick={() => handleMatchClick ([match[0], match[1]], index, fechaIndex)}
                               id={[match[0], match[1], index, fechaIndex]}
                             >
-                              {endMatches[(fechaIndex*2) + index] ? 
+                              {endMatches[fechaIndex*parseInt((matches.length) / 2) + index] ? 
                                 <EditIcon/>
                                 :
                                 <CheckIcon/>

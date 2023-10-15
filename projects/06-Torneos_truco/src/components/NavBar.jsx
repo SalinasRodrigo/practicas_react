@@ -17,6 +17,7 @@ export function NavBar ( {teams, setTeams, setMatches, matches, setEndMatches}) 
     const totalMatches = (aux_1.length) * (aux_1[0].length)
     const aux_2 = Array.from(Array(parseInt(totalMatches)), ( ) => false)
     setEndMatches(aux_2);
+    console.log(aux_2)
     window.localStorage.setItem('endMatches', JSON.stringify(aux_2))
   };
 
