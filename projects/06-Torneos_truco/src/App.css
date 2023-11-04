@@ -179,3 +179,16 @@ tbody tr:hover{
   color: black;
 }
 
+.print-table{
+  background-color: white;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  color: black;
+  box-shadow: none;
+  & th, td, tr{
+    background-color: inherit;
+    color: inherit;
+  }
+}
+

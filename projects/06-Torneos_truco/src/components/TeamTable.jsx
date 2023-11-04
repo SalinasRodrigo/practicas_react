@@ -1,7 +1,7 @@
 import { PlusIcon } from "../icons/PlusIcon";
 
 /* eslint-disable react/prop-types */
-export function TeamTable({ teams, setTeams }) {
+export function TeamTable({ teams, setTeams, matches }) {
 
 
   const handleSubmit = (event) => {
@@ -27,7 +27,7 @@ export function TeamTable({ teams, setTeams }) {
   return (
     <div>
       <div className="table">
-        <div className="inputs">
+        {matches? <></>:<div className="inputs">
           <form onSubmit={handleSubmit}>
             <label htmlFor="equipo" ><b>Agregas equipo</b></label>
             <div className="team-name-input">
@@ -35,7 +35,7 @@ export function TeamTable({ teams, setTeams }) {
               <button type="submit" className="input-button"><PlusIcon/></button>
             </div>
           </form>
-        </div>
+        </div>}
         {teams.length > 0 ? (
           <table>
             <thead>

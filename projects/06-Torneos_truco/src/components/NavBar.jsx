@@ -1,5 +1,6 @@
 import {matchesGenerator} from "../utility/matchesGenerator"
 import logo from "../assets/cartas-espanolas.png"
+import { MatchesPDF } from "./MatchesPdf";
 /* eslint-disable react/prop-types */
 
 export function NavBar ( {teams, setTeams, setMatches, matches, setEndMatches}) {
@@ -17,7 +18,6 @@ export function NavBar ( {teams, setTeams, setMatches, matches, setEndMatches}) 
     const totalMatches = (aux_1.length) * (aux_1[0].length)
     const aux_2 = Array.from(Array(parseInt(totalMatches)), ( ) => false)
     setEndMatches(aux_2);
-    console.log(aux_2)
     window.localStorage.setItem('endMatches', JSON.stringify(aux_2))
   };
 
@@ -28,7 +28,8 @@ export function NavBar ( {teams, setTeams, setMatches, matches, setEndMatches}) 
         <h1>Sistema Aldo 2.0</h1>
       </div>
       <div className="nav-buttons">
-        <button className="button" onClick={handleClick} disabled={teams.length < 2 || matches}>Empezar</button>
+        {matches ? <></> :<button className="button" onClick={handleClick} disabled={teams.length < 2 || matches}>Empezar</button>}
+        {matches ? <MatchesPDF  teams={teams} matches={matches}/> : <></>}
         <button className="button"onClick={reset} disabled={teams.length < 1}>Reiniciar</button>
       </div>
     </nav>
