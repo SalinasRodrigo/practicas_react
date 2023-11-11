@@ -4,6 +4,7 @@ import { Clasificacion } from "./components/Clasificacion";
 import { TeamTable } from "./components/TeamTable";
 import { MatchesTable } from "./components/MatchesTable";
 import { NavBar } from "./components/NavBar";
+import { Analytics } from '@vercel/analytics/react';
 
 const teamIniciaState = JSON.parse(window.localStorage.getItem('teams')) || [];
 const matchesIniciaState = JSON.parse(window.localStorage.getItem('matches')) || null;
@@ -27,6 +28,7 @@ function App() {
           <Clasificacion teams={teams} />
         </div>
       </main>
+      <Analytics/>
     </>
   );
 }
