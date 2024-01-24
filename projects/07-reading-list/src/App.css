@@ -1,0 +1,20 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.img-grid{
+  display: grid;
+  grid-template-columns: repeat(
+  auto-fill,
+  minmax(200px, 1fr)
+  );
+  gap: 40px;
+
+  & img{
+    width: 100%;
+    height:auto;
+  }
+}
