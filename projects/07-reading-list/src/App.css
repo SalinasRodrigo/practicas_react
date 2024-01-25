@@ -66,9 +66,21 @@
 
   & img{
     width: 100%;
-    aspect-ratio: 2/3;
     height:auto;
+    aspect-ratio: 2/3;
+    z-index: 1;
     transition: all 0.25s;
+  }
+
+  & img:hover{
+    filter: opacity(5%);
+    cursor: pointer;
+  }
+
+  & .add-btn{
+    position: absolute;
+    user-select: none;
+    z-index: 0;
   }
 }
 

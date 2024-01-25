@@ -2,7 +2,7 @@
 
 import { PlusIcon } from "../icons/PlusIcon"
 
-export const Library = ({books, setBooks, readList, setReadList }) => {
+export const Library = ({books, setBooks, setReadList }) => {
 
   const handleClick = (index) => {
     setReadList((prevState)=>[
