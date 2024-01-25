@@ -5,16 +5,52 @@
   text-align: center;
 }
 
+.main-page{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
 .img-grid{
   display: grid;
   grid-template-columns: repeat(
   auto-fill,
-  minmax(200px, 1fr)
+  minmax(150px, 1fr)
   );
   gap: 40px;
+
+  & .img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   & img{
     width: 100%;
     height:auto;
+    transition: all 0.25s;
   }
+
+  & img:hover{
+    filter: opacity(5%);
+  }
+
+  & .add-button{
+    position: absolute;
+    user-select: none;
+    z-index: -1;
+  }
+}
+
+
+.reading-list{
+  background-color: #5c5757;
+  border-radius: 10px;
+}
+
+.add-btn{
+  position: relative;
+  z-index: 9999;
+  top: -290px;
+  left: 90px;
 }

@@ -4,10 +4,12 @@ import library from './mooks/books.json';
 
 function App() {
   return (
-    <>
-      <h1>hey</h1>
+    <div className='main-page'>
       <Library library={library}/>
-    </>
+      <div className='reading-list'>
+        <h2>Lista de lectura</h2>
+      </div>
+    </div>
   )
 }
 
