@@ -84,3 +84,16 @@
   }
 }
 
+.filters{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  > div {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
